@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.9.RELEASE</version>
+        <version>2.2.7.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>nl.dtls</groupId>
@@ -14,8 +14,8 @@
     <version>${revision}${changelist}</version>
     <packaging>jar</packaging>
 
-    <name>Java Backend Common</name>
-    <description>Shared code for Java projects</description>
+    <name>Spring RDF Migration</name>
+    <description>Library for production migration of RDF Triple store</description>
     <url>https://github.com/FAIRDataTeam/spring-rdf-migration</url>
     <inceptionYear>2019</inceptionYear>
 
@@ -35,8 +35,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- Maven -->
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>14</maven.compiler.source>
+        <maven.compiler.target>14</maven.compiler.target>
 
         <!-- Core -->
         <lombok.version>1.18.10</lombok.version>
@@ -49,7 +49,7 @@
     <distributionManagement>
         <repository>
             <id>nexus-releases</id>
-            <url>https://toolshed.fair-dtls.surf-hosted.nl/repository/maven-releases/</url>
+            <url>https://nexus.internal.fairdatapoint.org/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
 
@@ -127,7 +127,7 @@
                 </executions>
                 <configuration>
                     <serverId>nexus</serverId>
-                    <nexusUrl>https://toolshed.fair-dtls.surf-hosted.nl</nexusUrl>
+                    <nexusUrl>https://nexus.internal.fairdatapoint.org</nexusUrl>
                     <skipStaging>true</skipStaging>
                 </configuration>
             </plugin>

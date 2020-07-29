@@ -56,7 +56,7 @@ public class Rdf_Migration_0001_Init implements RdfProductionMigration {
 
 **Stack:**
 
- - **Java** (recommended JDK 11)
+ - **Java** (recommended JDK 14)
  - **Maven** (recommended 3.2.5 or higher)
 
 ### Package the application

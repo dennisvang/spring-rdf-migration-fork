@@ -1,40 +1,30 @@
-name: spring rdf migration CI
+# https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-java-with-maven
 
-on:
-  push:
-  pull_request:
+name: Maven CI
+
+on: [push, pull_request]
 
 jobs:
-  buildDeploy:
-    name: Build-Deploy
+  build:
     runs-on: ubuntu-latest
 
-    env:
-      JDK_VERSION: 17
+    strategy:
+      matrix:
+        # temurin LTS versions
+        version: [17, 21]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      # (1) -> Prepare cache and Java
-      - name: Cache ~/.m2
-        uses: actions/cache@v2
-        with:
-          path: ~/.m2
-          key: ${{ runner.os }}-${{ env.JDK_VERSION }}-maven-${{ hashFiles('**/pom.xml') }}
-
-      # (2) -> Prepare Java
+      # setup
       - name: Setup Java
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v4
         with:
-          version: ${{ env.JDK_VERSION }}
+          java-version: ${{ matrix.version }}
+          distribution: 'temurin'
+          cache: maven
 
-      - name: Verify Maven and Java
-        run: |
-          mvn --version
-      # (3) -> Test and build
-      - name: Run tests
-        run: |
-          mvn --quiet test
-      - name: Build package
-        run: |
-          mvn --quiet -B --fail-fast -DskipTests package
+      # verify
+      # https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html
+      - name: Run maven verify
+        run: mvn --batch-mode --update-snapshots --fail-fast verify

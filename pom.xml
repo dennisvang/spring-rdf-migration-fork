@@ -7,6 +7,8 @@
         <!-- https://docs.spring.io/spring-boot/maven-plugin/using.html -->
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
+        <!-- TODO: upgrade spring boot (support for 2.2.x ended in 2020) -->
+         <!-- https://spring.io/projects/spring-boot#support -->
         <version>2.2.7.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>

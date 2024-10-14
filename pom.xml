@@ -49,8 +49,11 @@
 
     <distributionManagement>
         <repository>
-            <id>nexus-releases</id>
-            <url>https://nexus.internal.fairdatapoint.org/repository/maven-releases/</url>
+            <!-- https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-apache-maven-registry#publishing-a-package -->
+            <id>github</id>
+            <name>GitHub Apache Maven Packages</name>
+            <!-- https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/store-information-in-variables#default-environment-variables -->
+            <url>https://maven.pkg.github.com/${env.GITHUB_REPOSITORY}</url>
         </repository>
     </distributionManagement>
 

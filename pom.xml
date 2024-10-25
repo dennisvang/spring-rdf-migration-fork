@@ -63,7 +63,7 @@
         <lombok.version>1.18.34</lombok.version>
 
         <!-- Plugins -->
-        <plugin.mavenlic.version>3.0</plugin.mavenlic.version>
+        <plugin.mavenlic.version>4.6</plugin.mavenlic.version>
         <plugin.javadoc.version>3.10.1</plugin.javadoc.version>
         <plugin.source.version>3.3.1</plugin.source.version>
         <plugin.publishing.version>0.6.0</plugin.publishing.version>

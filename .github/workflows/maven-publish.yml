@@ -30,6 +30,7 @@ jobs:
         gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
     - name: Publish to Maven Central Portal
+      # if autoPublish is false (see pom.xml), we need to publish manually via https://central.sonatype.com/publishing/deployments
       run: mvn --batch-mode deploy
       env:
         MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}

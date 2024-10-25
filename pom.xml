@@ -122,6 +122,8 @@
                 <extensions>true</extensions>
                 <configuration>
                     <publishingServerId>central</publishingServerId>
+                    <!-- visit https://central.sonatype.com/publishing/deployments to publish manually -->
+                    <!-- also visit that site to debug validation issues -->
                     <autoPublish>false</autoPublish>
                 </configuration>
             </plugin>

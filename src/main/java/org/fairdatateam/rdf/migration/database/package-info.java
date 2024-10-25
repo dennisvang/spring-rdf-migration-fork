@@ -23,4 +23,4 @@
 /**
  * A package contains classes needed to store meta-information about the migrations into a MongoDB database
  */
-package nl.dtls.rdf.migration.database;
+package org.fairdatateam.rdf.migration.database;

@@ -20,17 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package nl.dtls.rdf.migration.database;
-
-import nl.dtls.rdf.migration.entity.RdfMigration;
-import org.springframework.data.mongodb.repository.MongoRepository;
-
 /**
- * A Mongo repository for manipulating with {@link RdfMigration}
- *
- * @author Vojtech Knaisl (vknaisl)
- * @since 1.0.0
+ * A package contains entities and annotations needed for the migration process
  */
-public interface RdfMigrationRepository extends MongoRepository<RdfMigration, String> {
-
-}
+package org.fairdatateam.rdf.migration.entity;

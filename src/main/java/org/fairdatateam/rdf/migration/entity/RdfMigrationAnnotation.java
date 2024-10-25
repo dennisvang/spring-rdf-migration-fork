@@ -20,8 +20,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.fairdatateam.rdf.migration.entity;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
 /**
- * A package related to production migrations of RDF Triple Stores. It fits into a Spring environment, and it uses
- * MongoDB as a database for storing metadata about already executed migrations
+ * An annotation serves for marking classes which should contain a concrete migration. Its
+ * properties contain a meta-information about the migration.
+ *
+ * @author Vojtech Knaisl (vknaisl)
+ * @since 1.0.0
  */
-package nl.dtls.rdf.migration;
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.TYPE)
+public @interface RdfMigrationAnnotation {
+
+    /**
+     * A number of the migration in your application ({@link org.fairdatateam.rdf.migration.entity.RdfMigration#number})
+     *
+     * @return A getter for the value
+     */
+    int number();
+
+    /**
+     * A name of the migration ({@link org.fairdatateam.rdf.migration.entity.RdfMigration#name})
+     *
+     * @return A getter for the value
+     */
+    String name();
+
+    /**
+     * A quick description of the purpose of the migration
+     * ({@link org.fairdatateam.rdf.migration.entity.RdfMigration#description})
+     *
+     * @return A getter for the value
+     */
+    String description();
+
+}

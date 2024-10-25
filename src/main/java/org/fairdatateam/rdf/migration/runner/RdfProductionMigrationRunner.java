@@ -20,12 +20,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package nl.dtls.rdf.migration.runner;
+package org.fairdatateam.rdf.migration.runner;
 
 import lombok.extern.slf4j.Slf4j;
-import nl.dtls.rdf.migration.database.RdfMigrationRepository;
-import nl.dtls.rdf.migration.entity.RdfMigration;
-import nl.dtls.rdf.migration.entity.RdfMigrationAnnotation;
+import org.fairdatateam.rdf.migration.database.RdfMigrationRepository;
+import org.fairdatateam.rdf.migration.entity.RdfMigration;
+import org.fairdatateam.rdf.migration.entity.RdfMigrationAnnotation;
 import org.springframework.context.ApplicationContext;
 
 import java.util.Comparator;

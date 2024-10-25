@@ -23,4 +23,4 @@
 /**
  * A package contains an actual logic of the migration process
  */
-package nl.dtls.rdf.migration.runner;
+package org.fairdatateam.rdf.migration.runner;

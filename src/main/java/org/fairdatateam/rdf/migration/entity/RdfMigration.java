@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package nl.dtls.rdf.migration.entity;
+package org.fairdatateam.rdf.migration.entity;
 
 
 import lombok.AllArgsConstructor;
@@ -35,7 +35,7 @@ import java.time.LocalDateTime;
 
 /**
  * RdfMigration encapsulates information about concrete migration. The information is saved in the
- * database through {@link nl.dtls.rdf.migration.database.RdfMigrationRepository}
+ * database through {@link org.fairdatateam.rdf.migration.database.RdfMigrationRepository}
  *
  * @author Vojtech Knaisl (vknaisl)
  * @since 1.0.0

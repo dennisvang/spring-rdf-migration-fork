@@ -20,7 +20,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package org.fairdatateam.rdf.migration.runner;
+
 /**
- * A package contains entities and annotations needed for the migration process
+ * An interface that is required to be implemented by a target migration class. A logic of the migration should be
+ * included in the method {@link RdfProductionMigration#runMigration()}
+ *
+ * @author Vojtech Knaisl (vknaisl)
+ * @since 1.0.0
  */
-package nl.dtls.rdf.migration.entity;
+public interface RdfProductionMigration {
+
+    /**
+     * A content of the migration
+     */
+    void runMigration();
+
+}

@@ -22,7 +22,7 @@ You have to adjust your MongoDB configuration to include entities and repositori
 
 ```java
 @Configuration
-@EnableMongoRepositories(basePackages = {"com.example", "nl.dtls.rdf.migration"})
+@EnableMongoRepositories(basePackages = {"com.example", "org.fairdatateam.rdf.migration"})
 public class MongoConfig {
 }
 ```

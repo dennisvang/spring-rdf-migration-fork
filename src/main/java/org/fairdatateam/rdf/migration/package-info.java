@@ -20,20 +20,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package nl.dtls.rdf.migration.runner;
-
 /**
- * An interface that is required to be implemented by a target migration class. A logic of the migration should be
- * included in the method {@link RdfProductionMigration#runMigration()}
- *
- * @author Vojtech Knaisl (vknaisl)
- * @since 1.0.0
+ * A package related to production migrations of RDF Triple Stores. It fits into a Spring environment, and it uses
+ * MongoDB as a database for storing metadata about already executed migrations
  */
-public interface RdfProductionMigration {
-
-    /**
-     * A content of the migration
-     */
-    void runMigration();
-
-}
+package org.fairdatateam.rdf.migration;

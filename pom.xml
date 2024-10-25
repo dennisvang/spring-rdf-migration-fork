@@ -19,7 +19,7 @@
 
     <name>Spring RDF Migration</name>
     <description>Library for production migration of RDF Triple store</description>
-    <url>https://github.com/FAIRDataTeam/spring-rdf-migration</url>
+    <url>https://github.com/${env.GITHUB_REPOSITORY}</url>
     <inceptionYear>2019</inceptionYear>
 
     <licenses>
@@ -30,8 +30,25 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/FAIRDataTeam/spring-rdf-migration</url>
+        <connection>scm:git:https://github.com/${env.GITHUB_REPOSITORY}.git</connection>
+        <developerConnection>scm:git:ssh://github.com/${env.GITHUB_REPOSITORY}.git</developerConnection>
+        <url>https://github.com/${env.GITHUB_REPOSITORY}</url>
     </scm>
+
+    <developers>
+        <developer>
+            <name>dennisvang</name>
+            <url>https://github.com/dennisvang</url>
+        </developer>
+        <developer>
+            <name>Marek Suchánek</name>
+            <url>https://github.com/MarekSuchanek</url>
+        </developer>
+        <developer>
+            <name>Vojtech Knaisl</name>
+            <url>https://github.com/vknaisl</url>
+        </developer>      
+    </developers>
 
     <properties>
         <!-- Project -->
@@ -46,7 +63,10 @@
 
         <!-- Plugins -->
         <plugin.mavenlic.version>3.0</plugin.mavenlic.version>
-        <plugin.javadoc.version>3.1.1</plugin.javadoc.version>
+        <plugin.javadoc.version>3.10.1</plugin.javadoc.version>
+        <plugin.source.version>3.3.1</plugin.source.version>
+        <plugin.publishing.version>0.6.0</plugin.publishing.version>
+        <plugin.gpg.version>3.2.7</plugin.gpg.version>
     </properties>
 
     <distributionManagement>
@@ -80,22 +100,6 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${plugin.javadoc.version}</version>
-                <configuration>
-                    <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>com.mycila</groupId>
                 <artifactId>license-maven-plugin</artifactId>
                 <version>${plugin.mavenlic.version}</version>
@@ -114,6 +118,67 @@
                         <phase>process-sources</phase>
                         <goals>
                             <goal>format</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- the following plugins are required for publishing to maven central -->
+            <!-- https://central.sonatype.org/publish/publish-portal-maven/ -->
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>${plugin.publishing.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                    <autoPublish>false</autoPublish>
+                </configuration>
+            </plugin>
+            <!-- https://central.sonatype.org/publish/publish-maven/#gpg-signed-components -->
+            <!-- https://maven.apache.org/plugins/maven-gpg-plugin/usage.html -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>${plugin.gpg.version}</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                        <configuration>
+                            <bestPractices>true</bestPractices>
+                            <!-- set gpg.keyname via command line if necessary (default: first found) -->
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- https://central.sonatype.org/publish/publish-maven/#javadoc-and-sources-attachments -->
+            <!-- https://maven.apache.org/plugins/maven-source-plugin/ -->
+            <!-- https://maven.apache.org/plugins/maven-javadoc-plugin/ -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${plugin.source.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${plugin.javadoc.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
                         </goals>
                     </execution>
                 </executions>

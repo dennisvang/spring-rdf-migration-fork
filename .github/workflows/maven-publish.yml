@@ -22,6 +22,7 @@ jobs:
         java-version: 17
         distribution: 'temurin'
         cache: maven
+        # https://central.sonatype.org/publish/generate-portal-token/
         server-id: central
         server-username: MAVEN_CENTRAL_USERNAME
         server-password: MAVEN_CENTRAL_TOKEN

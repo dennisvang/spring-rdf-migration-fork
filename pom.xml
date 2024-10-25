@@ -12,7 +12,8 @@
         <version>2.2.7.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>nl.dtls</groupId>
+    <!-- todo: change groupId to org.fairdatateam.rdf -->
+    <groupId>io.github.dennisvang</groupId>
     <artifactId>spring-rdf-migration</artifactId>
     <version>${revision}${changelist}</version>
     <packaging>jar</packaging>

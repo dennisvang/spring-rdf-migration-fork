@@ -23,8 +23,12 @@ jobs:
           java-version: ${{ matrix.version }}
           distribution: 'temurin'
           cache: maven
+          gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+          gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
       # verify
       # https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html
       - name: Run maven verify
         run: mvn --batch-mode --update-snapshots --fail-fast verify
+        env: 
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}

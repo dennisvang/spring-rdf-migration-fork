@@ -15,7 +15,7 @@
     <!-- todo: change groupId to org.fairdatateam.rdf -->
     <groupId>io.github.dennisvang</groupId>
     <artifactId>spring-rdf-migration</artifactId>
-    <version>${revision}${changelist}</version>
+    <version>2.0.0dev0</version>
     <packaging>jar</packaging>
 
     <name>Spring RDF Migration</name>

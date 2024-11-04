@@ -4,14 +4,18 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
+        <!-- https://docs.spring.io/spring-boot/maven-plugin/using.html -->
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
+        <!-- TODO: upgrade spring boot (support for 2.2.x ended in 2020) -->
+         <!-- https://spring.io/projects/spring-boot#support -->
         <version>2.2.7.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>nl.dtls</groupId>
+
+    <groupId>org.fairdatateam.rdf</groupId>
     <artifactId>spring-rdf-migration</artifactId>
-    <version>${revision}${changelist}</version>
+    <version>2.0.0</version>
     <packaging>jar</packaging>
 
     <name>Spring RDF Migration</name>
@@ -27,8 +31,25 @@
     </licenses>
 
     <scm>
+        <connection>scm:git:https://github.com/FAIRDataTeam/spring-rdf-migration.git</connection>
+        <developerConnection>scm:git:ssh://github.com/FAIRDataTeam/spring-rdf-migration.git</developerConnection>
         <url>https://github.com/FAIRDataTeam/spring-rdf-migration</url>
     </scm>
+
+    <developers>
+        <developer>
+            <name>dennisvang</name>
+            <url>https://github.com/dennisvang</url>
+        </developer>
+        <developer>
+            <name>Marek Suchánek</name>
+            <url>https://github.com/MarekSuchanek</url>
+        </developer>
+        <developer>
+            <name>Vojtech Knaisl</name>
+            <url>https://github.com/vknaisl</url>
+        </developer>      
+    </developers>
 
     <properties>
         <!-- Project -->
@@ -39,19 +60,15 @@
         <maven.compiler.target>17</maven.compiler.target>
 
         <!-- Core -->
-        <lombok.version>1.18.22</lombok.version>
+        <lombok.version>1.18.34</lombok.version>
 
         <!-- Plugins -->
-        <plugin.mavenlic.version>3.0</plugin.mavenlic.version>
-        <plugin.javadoc.version>3.1.1</plugin.javadoc.version>
+        <plugin.mavenlic.version>4.6</plugin.mavenlic.version>
+        <plugin.javadoc.version>3.10.1</plugin.javadoc.version>
+        <plugin.source.version>3.3.1</plugin.source.version>
+        <plugin.publishing.version>0.6.0</plugin.publishing.version>
+        <plugin.gpg.version>3.2.7</plugin.gpg.version>
     </properties>
-
-    <distributionManagement>
-        <repository>
-            <id>nexus-releases</id>
-            <url>https://nexus.internal.fairdatapoint.org/repository/maven-releases/</url>
-        </repository>
-    </distributionManagement>
 
     <dependencies>
         <!-- ////////////////// -->
@@ -73,22 +90,6 @@
     </dependencies>
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${plugin.javadoc.version}</version>
-                <configuration>
-                    <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <groupId>com.mycila</groupId>
                 <artifactId>license-maven-plugin</artifactId>
@@ -112,24 +113,68 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- the following plugins are required for publishing to maven central -->
+            <!-- https://central.sonatype.org/publish/publish-portal-maven/ -->
             <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.5.1</version>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>${plugin.publishing.version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                    <!-- visit https://central.sonatype.com/publishing/deployments to publish manually -->
+                    <!-- also visit that site to debug validation issues -->
+                    <autoPublish>false</autoPublish>
+                </configuration>
+            </plugin>
+            <!-- https://central.sonatype.org/publish/publish-maven/#gpg-signed-components -->
+            <!-- https://maven.apache.org/plugins/maven-gpg-plugin/usage.html -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>${plugin.gpg.version}</version>
                 <executions>
                     <execution>
-                        <id>default-deploy</id>
-                        <phase>deploy</phase>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
                         <goals>
-                            <goal>deploy</goal>
+                            <goal>sign</goal>
+                        </goals>
+                        <configuration>
+                            <bestPractices>true</bestPractices>
+                            <!-- set gpg.keyname via command line if necessary (default: first found) -->
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- https://central.sonatype.org/publish/publish-maven/#javadoc-and-sources-attachments -->
+            <!-- https://maven.apache.org/plugins/maven-source-plugin/ -->
+            <!-- https://maven.apache.org/plugins/maven-javadoc-plugin/ -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${plugin.source.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <serverId>nexus</serverId>
-                    <nexusUrl>https://nexus.internal.fairdatapoint.org</nexusUrl>
-                    <skipStaging>true</skipStaging>
-                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${plugin.javadoc.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

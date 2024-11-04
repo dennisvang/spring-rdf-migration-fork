@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2019 DTL
  *
@@ -21,6 +21,6 @@
  * THE SOFTWARE.
  */
 /**
- * A package contains an actual logic of the migration process
+ * A package contains entities and annotations needed for the migration process
  */
-package nl.dtls.rdf.migration.runner;
+package org.fairdatateam.rdf.migration.entity;

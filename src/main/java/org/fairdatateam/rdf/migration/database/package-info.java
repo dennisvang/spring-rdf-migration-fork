@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2019 DTL
  *
@@ -21,6 +21,6 @@
  * THE SOFTWARE.
  */
 /**
- * A package contains entities and annotations needed for the migration process
+ * A package contains classes needed to store meta-information about the migrations into a MongoDB database
  */
-package nl.dtls.rdf.migration.entity;
+package org.fairdatateam.rdf.migration.database;

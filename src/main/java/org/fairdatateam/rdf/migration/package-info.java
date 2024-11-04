@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2019 DTL
  *
@@ -24,4 +24,4 @@
  * A package related to production migrations of RDF Triple Stores. It fits into a Spring environment, and it uses
  * MongoDB as a database for storing metadata about already executed migrations
  */
-package nl.dtls.rdf.migration;
+package org.fairdatateam.rdf.migration;

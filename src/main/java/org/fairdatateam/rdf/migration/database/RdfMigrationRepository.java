@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License
  * Copyright © 2019 DTL
  *
@@ -20,20 +20,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package nl.dtls.rdf.migration.runner;
+package org.fairdatateam.rdf.migration.database;
+
+import org.fairdatateam.rdf.migration.entity.RdfMigration;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
- * An interface that is required to be implemented by a target migration class. A logic of the migration should be
- * included in the method {@link RdfProductionMigration#runMigration()}
+ * A Mongo repository for manipulating with {@link RdfMigration}
  *
  * @author Vojtech Knaisl (vknaisl)
  * @since 1.0.0
  */
-public interface RdfProductionMigration {
-
-    /**
-     * A content of the migration
-     */
-    void runMigration();
+public interface RdfMigrationRepository extends MongoRepository<RdfMigration, String> {
 
 }

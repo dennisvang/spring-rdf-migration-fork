@@ -17,9 +17,7 @@ jobs:
     - name: Set up JDK
       uses: actions/setup-java@v4
       with:
-        # using java 17 for now, to match original
-        # todo: migrate to java 21 (LTS) 
-        java-version: 17
+        java-version: 21
         distribution: 'temurin'
         cache: maven
         # https://central.sonatype.org/publish/generate-portal-token/

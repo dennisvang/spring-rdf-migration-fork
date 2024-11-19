@@ -40,7 +40,7 @@ import lombok.RequiredArgsConstructor;
 /**
  * A record in the migration history of an RDF triple-store.
  * 
- * The migration history itself is stored in a relational database, e.g. PostgreSQL,
+ * The migration history itself is stored in a relational database, for example PostgreSQL,
  * via the {@link org.fairdatateam.rdf.migration.database.RdfMigrationCrudRepository} 
  * repository interface.
  * 

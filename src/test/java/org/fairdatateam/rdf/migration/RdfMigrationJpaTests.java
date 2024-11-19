@@ -33,7 +33,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import lombok.extern.slf4j.Slf4j;
@@ -48,15 +47,12 @@ import lombok.extern.slf4j.Slf4j;
 public class RdfMigrationJpaTests {
 
     @Autowired
-	private TestEntityManager entityManager;
-
-    @Autowired
     private RdfMigrationCrudRepository repository;
 
     @Test
     public void testGeneratedFields() {
         // create new migration in database
-        this.entityManager.persist(new RdfMigrationJpa(1, "foo", "bar"));
+        repository.save(new RdfMigrationJpa(1, "foo", "bar"));
         // test
         assertEquals(1, this.repository.count());
         RdfMigrationJpa migration = this.repository.findAll().iterator().next();

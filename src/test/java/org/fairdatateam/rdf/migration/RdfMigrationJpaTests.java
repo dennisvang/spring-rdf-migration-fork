@@ -34,12 +34,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+
+import lombok.extern.slf4j.Slf4j;
 
 
 // https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html#testing.spring-boot-applications.autoconfigured-spring-data-jpa
 // https://docs.spring.io/spring-boot/reference/testing/spring-boot-applications.html#testing.spring-boot-applications.detecting-configuration
 // https://spring.io/guides/gs/multi-module
 
+@Slf4j
 @DataJpaTest
 public class RdfMigrationJpaTests {
 
@@ -51,16 +55,20 @@ public class RdfMigrationJpaTests {
 
     @Test
     public void testGeneratedFields() {
-        this.entityManager.persist(new RdfMigrationJpa());
+        // create new migration in database
+        this.entityManager.persist(new RdfMigrationJpa(1, "foo", "bar"));
+        // test
         assertEquals(1, this.repository.count());
         RdfMigrationJpa migration = this.repository.findAll().iterator().next();
         assertNotNull(migration.getId());
-        assertNotNull(migration.getCreatedAt());  
+        assertNotNull(migration.getCreatedAt());
+        log.info("created at: " + migration.getCreatedAt());
     }
 
     @SpringBootApplication
+    @EnableJpaAuditing
     static class TestConfiguration {
-        
+        // for lack of an actual application
     }
 
 }

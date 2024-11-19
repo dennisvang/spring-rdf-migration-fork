@@ -53,11 +53,11 @@
     <properties>
         <java.version>21</java.version>
         
-        <plugin.mavenlic.version>4.6</plugin.mavenlic.version>
-        <plugin.javadoc.version>3.11.1</plugin.javadoc.version>
-        <plugin.source.version>3.3.1</plugin.source.version>
-        <plugin.publishing.version>0.6.0</plugin.publishing.version>
-        <plugin.gpg.version>3.2.7</plugin.gpg.version>
+        <plugins.license-maven-plugin.version>4.6</plugins.license-maven-plugin.version>
+        <plugins.maven-javadoc-plugin.version>3.11.1</plugins.maven-javadoc-plugin.version>
+        <plugins.maven-source-plugin.version>3.3.1</plugins.maven-source-plugin.version>
+        <plugins.central-publishing-maven-plugin.version>0.6.0</plugins.central-publishing-maven-plugin.version>
+        <plugins.maven-gpg-plugin.version>3.2.7</plugins.maven-gpg-plugin.version>
     </properties>
 
     <dependencies>
@@ -77,7 +77,7 @@
             <plugin>
                 <groupId>com.mycila</groupId>
                 <artifactId>license-maven-plugin</artifactId>
-                <version>${plugin.mavenlic.version}</version>
+                <version>${plugins.license-maven-plugin.version}</version>
                 <configuration>
                     <header>com/mycila/maven/plugin/license/templates/MIT.txt</header>
                     <properties>
@@ -102,7 +102,7 @@
             <plugin>
                 <groupId>org.sonatype.central</groupId>
                 <artifactId>central-publishing-maven-plugin</artifactId>
-                <version>${plugin.publishing.version}</version>
+                <version>${plugins.central-publishing-maven-plugin.version}</version>
                 <extensions>true</extensions>
                 <configuration>
                     <publishingServerId>central</publishingServerId>
@@ -116,7 +116,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
-                <version>${plugin.gpg.version}</version>
+                <version>${plugins.maven-gpg-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
@@ -137,7 +137,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>${plugin.source.version}</version>
+                <version>${plugins.maven-source-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -150,7 +150,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${plugin.javadoc.version}</version>
+                <version>${plugins.maven-javadoc-plugin.version}</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>

@@ -23,6 +23,8 @@
 package org.fairdatateam.rdf.migration.database;
 
 import org.fairdatateam.rdf.migration.entity.RdfMigration;
+
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 /**
@@ -31,6 +33,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
  * @author Vojtech Knaisl (vknaisl)
  * @since 1.0.0
  */
-public interface RdfMigrationRepository extends MongoRepository<RdfMigration, String> {
+public interface RdfMigrationRepository extends MongoRepository<RdfMigration, ObjectId> {
 
 }

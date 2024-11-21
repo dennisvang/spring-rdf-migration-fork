@@ -24,12 +24,12 @@ package org.fairdatateam.rdf.migration.runner;
 
 /**
  * An interface that is required to be implemented by a target migration class. A logic of the migration should be
- * included in the method {@link RdfProductionMigration#runMigration()}
+ * included in the method {@link Migratable#runMigration()}
  *
  * @author Vojtech Knaisl (vknaisl)
  * @since 1.0.0
  */
-public interface RdfProductionMigration {
+public interface Migratable {
 
     /**
      * A content of the migration

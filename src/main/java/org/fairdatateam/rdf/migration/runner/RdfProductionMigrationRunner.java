@@ -74,11 +74,11 @@ public class RdfProductionMigrationRunner {
                 .values()
                 .stream()
                 .map(o -> {
-                    if (!(o instanceof RdfProductionMigration)) {
-                        log.error("Defined Migration has to be type of RdfProductionMigration");
+                    if (!(o instanceof Migratable)) {
+                        log.error("Defined Migration has to implement Migratable");
                         return null;
                     }
-                    return (RdfProductionMigration) o;
+                    return (Migratable) o;
                 })
                 .filter(Objects::nonNull)
                 .filter(m -> getAnnotation(m).number() > lastMigrationNumber)
@@ -101,7 +101,7 @@ public class RdfProductionMigrationRunner {
      * @param migration A migration from which we want to extract annotation
      * @return The desired annotation
      */
-    private RdfMigrationAnnotation getAnnotation(RdfProductionMigration migration) {
+    private RdfMigrationAnnotation getAnnotation(Migratable migration) {
         return migration.getClass().getAnnotation(RdfMigrationAnnotation.class);
     }
 

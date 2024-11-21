@@ -36,7 +36,7 @@ That's all! You can start creating your migrations. See the example below.
     name = "Init migration",
     description = "Load initial data into Triple Store")
 @Service
-public class Rdf_Migration_0001_Init implements RdfProductionMigration {
+public class Rdf_Migration_0001_Init implements Migratable {
 
     @Autowired
     protected Repository repository;

@@ -22,17 +22,17 @@
  */
 package org.fairdatateam.rdf.migration.database;
 
-import org.fairdatateam.rdf.migration.entity.RdfMigrationJpa;
+import org.fairdatateam.rdf.migration.entity.JpaRdfMigration;
 
 import org.springframework.data.repository.CrudRepository;
 
 /**
- * A repository for storing {@link RdfMigrationJpa} 
+ * A repository for storing {@link JpaRdfMigration} 
  * entities in a relational database such as PostgreSQL.
  * 
  * @author dennisvang
  * @since 2.1.0 
  */
-public interface RdfMigrationCrudRepository extends CrudRepository<RdfMigrationJpa, Long> {
+public interface RdfMigrationCrudRepository extends CrudRepository<JpaRdfMigration, Long> {
     
 }

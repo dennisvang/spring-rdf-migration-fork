@@ -51,7 +51,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class RdfMigrationJpa {
+public class JpaRdfMigration {
 
     /**
      * An auto-generated internal database record id

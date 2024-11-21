@@ -39,14 +39,14 @@ import java.lang.annotation.Target;
 public @interface RdfMigrationAnnotation {
 
     /**
-     * A number of the migration in your application ({@link org.fairdatateam.rdf.migration.entity.RdfMigration#number})
+     * A number of the migration in your application ({@link org.fairdatateam.rdf.migration.entity.MongoRdfMigration#number})
      *
      * @return A getter for the value
      */
     int number();
 
     /**
-     * A name of the migration ({@link org.fairdatateam.rdf.migration.entity.RdfMigration#name})
+     * A name of the migration ({@link org.fairdatateam.rdf.migration.entity.MongoRdfMigration#name})
      *
      * @return A getter for the value
      */
@@ -54,7 +54,7 @@ public @interface RdfMigrationAnnotation {
 
     /**
      * A quick description of the purpose of the migration
-     * ({@link org.fairdatateam.rdf.migration.entity.RdfMigration#description})
+     * ({@link org.fairdatateam.rdf.migration.entity.MongoRdfMigration#description})
      *
      * @return A getter for the value
      */

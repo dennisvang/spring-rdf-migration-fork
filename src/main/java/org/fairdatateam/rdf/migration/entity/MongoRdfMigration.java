@@ -35,7 +35,7 @@ import java.time.LocalDateTime;
 
 /**
  * RdfMigration encapsulates information about concrete migration. The information is saved in the
- * database through {@link org.fairdatateam.rdf.migration.database.RdfMigrationRepository}
+ * database through {@link org.fairdatateam.rdf.migration.database.RdfMigrationMongoRepository}
  *
  * @author Vojtech Knaisl (vknaisl)
  * @since 1.0.0
@@ -45,7 +45,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Getter
 @Setter
-public class RdfMigration {
+public class MongoRdfMigration {
 
     /**
      * An internal Mongo DB Id
@@ -73,7 +73,7 @@ public class RdfMigration {
      */
     protected LocalDateTime createdAt;
 
-    public RdfMigration(Integer number, String name, String description) {
+    public MongoRdfMigration(Integer number, String name, String description) {
         this.number = number;
         this.name = name;
         this.description = description;

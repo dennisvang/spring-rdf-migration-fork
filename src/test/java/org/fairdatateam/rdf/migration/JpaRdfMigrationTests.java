@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.fairdatateam.rdf.migration.database.RdfMigrationCrudRepository;
-import org.fairdatateam.rdf.migration.entity.RdfMigrationJpa;
+import org.fairdatateam.rdf.migration.entity.JpaRdfMigration;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +44,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @DataJpaTest
-public class RdfMigrationJpaTests {
+public class JpaRdfMigrationTests {
 
     @Autowired
     private RdfMigrationCrudRepository repository;
@@ -52,10 +52,10 @@ public class RdfMigrationJpaTests {
     @Test
     public void testGeneratedFields() {
         // create new migration in database
-        repository.save(new RdfMigrationJpa(1, "foo", "bar"));
+        repository.save(new JpaRdfMigration(1, "foo", "bar"));
         // test
         assertEquals(1, this.repository.count());
-        RdfMigrationJpa migration = this.repository.findAll().iterator().next();
+        JpaRdfMigration migration = this.repository.findAll().iterator().next();
         assertNotNull(migration.getId());
         assertNotNull(migration.getCreatedAt());
         log.info("created at: " + migration.getCreatedAt());

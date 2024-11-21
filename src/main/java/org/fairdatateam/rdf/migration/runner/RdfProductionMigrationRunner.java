@@ -23,8 +23,8 @@
 package org.fairdatateam.rdf.migration.runner;
 
 import lombok.extern.slf4j.Slf4j;
-import org.fairdatateam.rdf.migration.database.RdfMigrationRepository;
-import org.fairdatateam.rdf.migration.entity.RdfMigration;
+import org.fairdatateam.rdf.migration.database.RdfMigrationMongoRepository;
+import org.fairdatateam.rdf.migration.entity.MongoRdfMigration;
 import org.fairdatateam.rdf.migration.entity.RdfMigrationAnnotation;
 import org.springframework.context.ApplicationContext;
 
@@ -44,14 +44,14 @@ public class RdfProductionMigrationRunner {
     /**
      * A repository for storing information about metadata into a database
      */
-    private RdfMigrationRepository rdfMigrationRepository;
+    private RdfMigrationMongoRepository rdfMigrationRepository;
 
     /**
      * A Spring application context that is needed to retrieve a concrete annotated migration class defined by a user
      */
     private ApplicationContext appContext;
 
-    public RdfProductionMigrationRunner(RdfMigrationRepository rdfMigrationRepository,
+    public RdfProductionMigrationRunner(RdfMigrationMongoRepository rdfMigrationRepository,
                                         ApplicationContext appContext) {
         this.rdfMigrationRepository = rdfMigrationRepository;
         this.appContext = appContext;
@@ -63,10 +63,10 @@ public class RdfProductionMigrationRunner {
      */
     public void run() {
         log.info("Production Migration of RDF Store started");
-        List<RdfMigration> migrationsInDB = rdfMigrationRepository.findAll();
+        List<MongoRdfMigration> migrationsInDB = rdfMigrationRepository.findAll();
         int lastMigrationNumber = migrationsInDB
                 .stream()
-                .map(RdfMigration::getNumber)
+                .map(MongoRdfMigration::getNumber)
                 .max(Integer::compareTo)
                 .orElse(0);
 
@@ -84,7 +84,7 @@ public class RdfProductionMigrationRunner {
                 .filter(m -> getAnnotation(m).number() > lastMigrationNumber)
                 .sorted(Comparator.comparingInt(m -> getAnnotation(m).number()))
                 .forEach(m -> {
-                    RdfMigration mEntity = new RdfMigration(getAnnotation(m).number(),
+                    MongoRdfMigration mEntity = new MongoRdfMigration(getAnnotation(m).number(),
                             getAnnotation(m).name(),
                             getAnnotation(m).description());
                     log.info("Production Migration (n. {}) started", mEntity.getNumber());

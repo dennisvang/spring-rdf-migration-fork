@@ -39,7 +39,7 @@ import java.util.Objects;
  * @since 1.0.0
  */
 @Slf4j
-public class RdfMigrationRunner {
+public class MongoRdfMigrationRunner {
 
     /**
      * A repository for storing information about metadata into a database
@@ -51,7 +51,7 @@ public class RdfMigrationRunner {
      */
     private ApplicationContext appContext;
 
-    public RdfMigrationRunner(RdfMigrationMongoRepository rdfMigrationRepository,
+    public MongoRdfMigrationRunner(RdfMigrationMongoRepository rdfMigrationRepository,
                                         ApplicationContext appContext) {
         this.rdfMigrationRepository = rdfMigrationRepository;
         this.appContext = appContext;
@@ -106,4 +106,3 @@ public class RdfMigrationRunner {
     }
 
 }
-

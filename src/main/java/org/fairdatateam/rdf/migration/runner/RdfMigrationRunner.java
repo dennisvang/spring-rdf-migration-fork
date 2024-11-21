@@ -39,7 +39,7 @@ import java.util.Objects;
  * @since 1.0.0
  */
 @Slf4j
-public class RdfProductionMigrationRunner {
+public class RdfMigrationRunner {
 
     /**
      * A repository for storing information about metadata into a database
@@ -51,7 +51,7 @@ public class RdfProductionMigrationRunner {
      */
     private ApplicationContext appContext;
 
-    public RdfProductionMigrationRunner(RdfMigrationMongoRepository rdfMigrationRepository,
+    public RdfMigrationRunner(RdfMigrationMongoRepository rdfMigrationRepository,
                                         ApplicationContext appContext) {
         this.rdfMigrationRepository = rdfMigrationRepository;
         this.appContext = appContext;
@@ -62,7 +62,7 @@ public class RdfProductionMigrationRunner {
      * them with already completed annotation, and runs the migrations that weren't run yet.
      */
     public void run() {
-        log.info("Production Migration of RDF Store started");
+        log.info("Migration of RDF Store started");
         List<MongoRdfMigration> migrationsInDB = rdfMigrationRepository.findAll();
         int lastMigrationNumber = migrationsInDB
                 .stream()
@@ -87,12 +87,12 @@ public class RdfProductionMigrationRunner {
                     MongoRdfMigration mEntity = new MongoRdfMigration(getAnnotation(m).number(),
                             getAnnotation(m).name(),
                             getAnnotation(m).description());
-                    log.info("Production Migration (n. {}) started", mEntity.getNumber());
+                    log.info("Migration (n. {}) started", mEntity.getNumber());
                     m.runMigration();
                     rdfMigrationRepository.save(mEntity);
-                    log.info("Production Migration (n. {}) ended", mEntity.getNumber());
+                    log.info("Migration (n. {}) ended", mEntity.getNumber());
                 });
-        log.info("Production Migration of RDF Store ended");
+        log.info("Migration of RDF Store ended");
     }
 
     /**

@@ -18,7 +18,7 @@
     <packaging>jar</packaging>
 
     <name>Spring RDF Migration</name>
-    <description>Library for production migration of RDF Triple store</description>
+    <description>Library for migration of RDF Triple store</description>
     <url>https://github.com/FAIRDataTeam/spring-rdf-migration</url>
     <inceptionYear>2019</inceptionYear>
 

@@ -10,9 +10,9 @@ Firstly, you need to define a migration runner bean in your configuration.
 
 ```java
 @Bean
-public RdfProductionMigrationRunner rdfProductionMigrationRunner(RdfMigrationRepository rdfMigrationRepository,
+public RdfMigrationRunner rdfMigrationRunner(RdfMigrationRepository rdfMigrationRepository,
                                                                  ApplicationContext appContext) {
-    RdfProductionMigrationRunner mr = new RdfProductionMigrationRunner(rdfMigrationRepository, appContext);
+    RdfMigrationRunner mr = new RdfMigrationRunner(rdfMigrationRepository, appContext);
     mr.run();
     return mr;
 }

@@ -27,9 +27,9 @@ import org.fairdatateam.rdf.migration.database.RdfMigrationCrudRepository;
 import org.fairdatateam.rdf.migration.entity.JpaRdfMigration;
 import org.fairdatateam.rdf.migration.entity.RdfMigrationAnnotation;
 import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
-import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
@@ -41,6 +41,7 @@ import java.util.stream.StreamSupport;
  * @since 1.0.0
  */
 @Slf4j
+@Service
 public class JpaRdfMigrationRunner {
 
     /**

@@ -47,12 +47,12 @@ public class JpaRdfMigrationRunner {
     /**
      * A repository for storing information about metadata into a database
      */
-    private RdfMigrationCrudRepository rdfMigrationRepository;
+    private final RdfMigrationCrudRepository rdfMigrationRepository;
 
     /**
      * A Spring application context that is needed to retrieve a concrete annotated migration class defined by a user
      */
-    private ApplicationContext appContext;
+    private final ApplicationContext appContext;
 
     public JpaRdfMigrationRunner(RdfMigrationCrudRepository rdfMigrationRepository,
                                         ApplicationContext appContext) {

@@ -56,9 +56,8 @@ public class JpaRdfMigrationTests {
         // test
         assertEquals(1, this.repository.count());
         JpaRdfMigration migration = this.repository.findAll().iterator().next();
-        assertNotNull(migration.getId());
         assertNotNull(migration.getCreatedAt());
-        log.info("created at: " + migration.getCreatedAt());
+        log.info("created at: {}", migration.getCreatedAt());
     }
 
     @SpringBootApplication

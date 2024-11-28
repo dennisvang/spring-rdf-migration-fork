@@ -59,13 +59,16 @@ public class JpaRdfMigrationRunnerTests {
     @EnableJpaAuditing
     static class TestConfiguration {
         // for lack of an actual application
-    }
 
-    @RdfMigrationAnnotation(number = 1, name = "test", description = "test")
-    @Service
-    private class TestMigration implements Migratable {
-        public void runMigration() {
-            log.info("running migration");
+        // dummy migration to test
+        @RdfMigrationAnnotation(number = 1, name = "test", description = "test")
+        @Service
+        private static class TestMigration implements Migratable {
+            public void runMigration() {
+                log.info("running test migration");
+            }
         }
     }
+
+
 }
